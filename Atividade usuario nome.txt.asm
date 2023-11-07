@@ -2,7 +2,7 @@
 ;Author:Gabriela Arruda Carriel, FEAP Avaré 
 ;Version:Gabriela Arruda Carriel, curso Engenharia da Cumputação, termo 3°
 ;Atividade do dia 06/11
-;Entrega: até 13/11
+;Entrega: até 06/11
 ;Utilizando tutorial point 
 
 SYS_EXIT  equ 1
