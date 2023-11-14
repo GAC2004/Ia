@@ -9,21 +9,22 @@ SYS_EXIT  equ 1
 SYS_READ equ 3
 SYS_WRITE equ 4
 STDIN equ 0
-STDOUT equ 2
+STDOUT equ 1
 ; Este código recebe dois números do usuário e calcula a média entre eles.
 
 section .data
     message1 db "Digite o primeiro número: "
-    message2 db "Digite o segundo número: "
-    message3 db "A média é: "
-    
     len1 equ $-message1
+    
+    message2 db "Digite o segundo número: "
     len2 equ $-message2
+    
+    message3 db "A média é: "
     len3 equ $-message3
 
 section .bss
-    num1 resd 1
-    num2 resd 1
+    num1 resb 5
+    num2 resb 5
 
 section .text
     global _start
@@ -37,11 +38,11 @@ _start:
     int 0x80
 
     ; Lê o primeiro número do usuário.
-   mov eax, SYS_READ
-   mov ebx, STDIN
-   mov ecx, num1
-   mov edx, 2
-   int 0x80
+    mov eax, SYS_READ
+    mov ebx, STDIN
+    mov ecx, num1
+    mov edx, 5
+    int 0x80
 
     ; Imprime uma mensagem solicitando o segundo número.
     mov eax, SYS_WRITE
@@ -51,17 +52,16 @@ _start:
     int 0x80
 
     ; Lê o segundo número do usuário.
-   mov eax, SYS_READ
-   mov ebx, STDIN
-   mov ecx, num2
-   mov edx, 2
-   int 0x80
+    mov eax, SYS_READ
+    mov ebx, STDIN
+    mov ecx, num2
+    mov edx, 2
+    int 0x80
 
     ; Calcula a média entre os dois números.
     mov eax, [num1]
     add eax, [num2]
-    mov ebx, 2
-    div ebx
+    
 
     ; Imprime a média na tela.
     mov eax, SYS_WRITE
