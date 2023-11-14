@@ -3,7 +3,8 @@
 ;Version:Gabriela Arruda Carriel, curso Engenharia da Cumputação, termo 3°
 ;Atividade do dia 06/11
 ;Entrega: até 13/11
-;Utilizando tutorial point 
+;Utilizando tutorial point
+;erro do mesmo da stela, que você fez um codigo para mim para ajudar 
 
 SYS_EXIT  equ 1
 SYS_READ equ 3
@@ -59,15 +60,23 @@ _start:
     int 0x80
 
     ; Calcula a média entre os dois números.
-    mov eax, [num1]
-    add eax, [num2]
+    mov eax, [num1] ;atribui num1 a eax
+    add eax, [num2] ; soma num2 a eax
+;   xor ebx         ; zera ebx
+    mov edx, 0    ; conversão para evitar o (floating point exception) - core dumped
+    mov ebx, 2      ; atribui 2 a ebx
+    div ebx    ; divide eax por ebx (2)
     
-
     ; Imprime a média na tela.
     mov eax, SYS_WRITE
     mov ebx, STDOUT
     mov ecx, message3
     mov edx, len3
+    int 0x80
+
+    ; Sai do programa.
+    mov eax, 1
+    mov ebx, 0
     int 0x80
 
     ; Sai do programa.
